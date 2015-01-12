@@ -40,8 +40,8 @@ func (r *ShowsService) Search(query string) (shows []ShowResult, result *Result)
 type Show struct {
 	AiredEpisodes int `json:"aired_episodes"`
 	Airs          struct {
-		Day      int    `json:"day"`
-		Time     int    `json:"time"`
+		Day      string `json:"day"`
+		Time     string `json:"time"`
 		Timezone string `json:"timezone"`
 	} `json:"airs"`
 	AvailableTranslations []string `json:"available_translations"`
@@ -99,7 +99,7 @@ type ShowResult struct {
 	Score float64 `json:"score"`
 	Show  struct {
 		Ids struct {
-			Imdb   int    `json:"imdb"`
+			Imdb   string `json:"imdb"`
 			Slug   string `json:"slug"`
 			Tmdb   int    `json:"tmdb"`
 			Trakt  int    `json:"trakt"`
