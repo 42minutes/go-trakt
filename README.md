@@ -46,5 +46,11 @@ func main() {
   episodes, err := client.Episodes().AllBySeason(1390, 1)
   fmt.Println(episodes)
   fmt.Println(err) // Should be nil
+
+  showResults, err := client.Shows().Search("game of thrones")
+  for _, showResult := range showResults {
+    fmt.Println(showResult.Show)
+  }
+  fmt.Println(err) // Should be nil
 }
 ```
