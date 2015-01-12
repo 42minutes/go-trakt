@@ -24,8 +24,8 @@ func (r *EpisodesService) AllBySeason(showTraktId int, seasonNumber int) (episod
 
 // Episode struct for the Trakt v2 API
 type Episode struct {
-	AvailableTranslations []interface{} `json:"available_translations"`
-	FirstAired            string        `json:"first_aired"`
+	AvailableTranslations []string `json:"available_translations"`
+	FirstAired            string   `json:"first_aired"`
 	Ids                   struct {
 		Imdb   string `json:"imdb"`
 		Tmdb   int    `json:"tmdb"`

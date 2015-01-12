@@ -33,9 +33,9 @@ func (r *ShowsService) AllPopular() (shows []Show, result *Result) {
 type Show struct {
 	AiredEpisodes int `json:"aired_episodes"`
 	Airs          struct {
-		Day      interface{} `json:"day"`
-		Time     interface{} `json:"time"`
-		Timezone string      `json:"timezone"`
+		Day      int    `json:"day"`
+		Time     int    `json:"time"`
+		Timezone string `json:"timezone"`
 	} `json:"airs"`
 	AvailableTranslations []string `json:"available_translations"`
 	Certification         string   `json:"certification"`
