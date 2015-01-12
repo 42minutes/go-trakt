@@ -27,18 +27,24 @@ type Episode struct {
 	AvailableTranslations []interface{} `json:"available_translations"`
 	FirstAired            string        `json:"first_aired"`
 	Ids                   struct {
-		Imdb   string      `json:"imdb"`
-		Tmdb   int         `json:"tmdb"`
-		Trakt  int         `json:"trakt"`
-		Tvdb   int         `json:"tvdb"`
-		Tvrage interface{} `json:"tvrage"`
+		Imdb   string `json:"imdb"`
+		Tmdb   int    `json:"tmdb"`
+		Trakt  int    `json:"trakt"`
+		Tvdb   int    `json:"tvdb"`
+		Tvrage int    `json:"tvrage"`
 	} `json:"ids"`
-	Number    int         `json:"number"`
-	NumberAbs interface{} `json:"number_abs"`
-	Overview  string      `json:"overview"`
-	Rating    float64     `json:"rating"`
-	Season    int         `json:"season"`
-	Title     string      `json:"title"`
-	UpdatedAt string      `json:"updated_at"`
-	Votes     int         `json:"votes"`
+	Images struct {
+		Screenshot struct {
+			Full   string `json:"full"`
+			Medium string `json:"medium"`
+			Thumb  string `json:"thumb"`
+		} `json:"screenshot"`
+	} `json:"images"`
+	Number    int     `json:"number"`
+	Overview  string  `json:"overview"`
+	Rating    float64 `json:"rating"`
+	Season    int     `json:"season"`
+	Title     string  `json:"title"`
+	UpdatedAt string  `json:"updated_at"`
+	Votes     int     `json:"votes"`
 }

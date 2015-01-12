@@ -26,13 +26,23 @@ func (r *SeasonsService) All(showTraktId int) (seasons []Season, result *Result)
 type Season struct {
 	EpisodeCount int `json:"episode_count"`
 	Ids          struct {
-		Tmdb   int         `json:"tmdb"`
-		Trakt  int         `json:"trakt"`
-		Tvdb   int         `json:"tvdb"`
-		Tvrage interface{} `json:"tvrage"`
+		Tmdb   int `json:"tmdb"`
+		Trakt  int `json:"trakt"`
+		Tvdb   int `json:"tvdb"`
+		Tvrage int `json:"tvrage"`
 	} `json:"ids"`
-	Number   int         `json:"number"`
-	Overview interface{} `json:"overview"`
-	Rating   float64     `json:"rating"`
-	Votes    int         `json:"votes"`
+	Images struct {
+		Poster struct {
+			Full   string `json:"full"`
+			Medium string `json:"medium"`
+			Thumb  string `json:"thumb"`
+		} `json:"poster"`
+		Thumb struct {
+			Full string `json:"full"`
+		} `json:"thumb"`
+	} `json:"images"`
+	Number   int     `json:"number"`
+	Overview string  `json:"overview"`
+	Rating   float64 `json:"rating"`
+	Votes    int     `json:"votes"`
 }

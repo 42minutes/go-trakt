@@ -37,12 +37,12 @@ type Show struct {
 		Time     interface{} `json:"time"`
 		Timezone string      `json:"timezone"`
 	} `json:"airs"`
-	AvailableTranslations []string    `json:"available_translations"`
-	Certification         interface{} `json:"certification"`
-	Country               string      `json:"country"`
-	FirstAired            string      `json:"first_aired"`
-	Genres                []string    `json:"genres"`
-	Homepage              interface{} `json:"homepage"`
+	AvailableTranslations []string `json:"available_translations"`
+	Certification         string   `json:"certification"`
+	Country               string   `json:"country"`
+	FirstAired            string   `json:"first_aired"`
+	Genres                []string `json:"genres"`
+	Homepage              string   `json:"homepage"`
 	Ids                   struct {
 		Imdb   string `json:"imdb"`
 		Slug   string `json:"slug"`
@@ -75,15 +75,15 @@ type Show struct {
 			Full string `json:"full"`
 		} `json:"thumb"`
 	} `json:"images"`
-	Language  string      `json:"language"`
-	Network   interface{} `json:"network"`
-	Overview  string      `json:"overview"`
-	Rating    float64     `json:"rating"`
-	Runtime   float64     `json:"runtime"`
-	Status    string      `json:"status"`
-	Title     string      `json:"title"`
-	Trailer   interface{} `json:"trailer"`
-	UpdatedAt string      `json:"updated_at"`
-	Votes     int         `json:"votes"`
-	Year      int         `json:"year"`
+	Language  string  `json:"language"`
+	Network   string  `json:"network"`
+	Overview  string  `json:"overview"`
+	Rating    float64 `json:"rating"`
+	Runtime   float64 `json:"runtime"`
+	Status    string  `json:"status"`
+	Title     string  `json:"title"`
+	Trailer   string  `json:"trailer"`
+	UpdatedAt string  `json:"updated_at"`
+	Votes     int     `json:"votes"`
+	Year      int     `json:"year"`
 }
