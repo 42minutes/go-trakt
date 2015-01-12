@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/jingweno/go-sawyer"
 	"github.com/jingweno/go-sawyer/hypermedia"
@@ -29,7 +30,12 @@ type Client struct {
 }
 
 func (c *Client) NewRequest(urlStr string) (req *Request, err error) {
-	urlStr += "?extended=full,images" // TODO Move this to a more sane place
+	// TODO Move this to a more sane place
+	if strings.Contains(urlStr, "?") == true {
+		urlStr += "&extended=full,images"
+	} else {
+		urlStr += "?extended=full,images"
+	}
 	req, err = newRequest(c, urlStr)
 	if err != nil {
 		return
