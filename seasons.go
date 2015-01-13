@@ -17,7 +17,7 @@ type SeasonsService struct {
 }
 
 func (r *SeasonsService) All(showTraktId int) (seasons []Season, result *Result) {
-	url, _ := ShowsPopularURL.Expand(M{"showTraktId": fmt.Sprintf("%d", showTraktId)})
+	url, _ := ShowSeasonsURL.Expand(M{"showTraktId": fmt.Sprintf("%d", showTraktId)})
 	result = r.client.get(url, &seasons)
 	return
 }
