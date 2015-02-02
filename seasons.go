@@ -3,7 +3,7 @@ package trakt
 import "fmt"
 
 var (
-	ShowSeasonsURL = Hyperlink("shows/{showTraktId}/seasons")
+	ShowSeasonsURL = Hyperlink("shows/{showTraktID}/seasons")
 )
 
 // Create a ShowsService with the base url.URL
@@ -16,8 +16,8 @@ type SeasonsService struct {
 	client *Client
 }
 
-func (r *SeasonsService) All(showTraktId int) (seasons []Season, result *Result) {
-	url, _ := ShowSeasonsURL.Expand(M{"showTraktId": fmt.Sprintf("%d", showTraktId)})
+func (r *SeasonsService) All(showTraktID int) (seasons []Season, result *Result) {
+	url, _ := ShowSeasonsURL.Expand(M{"showTraktID": fmt.Sprintf("%d", showTraktID)})
 	result = r.client.get(url, &seasons)
 	return
 }
@@ -25,7 +25,7 @@ func (r *SeasonsService) All(showTraktId int) (seasons []Season, result *Result)
 // Season struct for the Trakt v2 API
 type Season struct {
 	EpisodeCount int `json:"episode_count"`
-	Ids          struct {
+	IDs          struct {
 		Tmdb   int `json:"tmdb"`
 		Trakt  int `json:"trakt"`
 		Tvdb   int `json:"tvdb"`
