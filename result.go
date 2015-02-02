@@ -7,6 +7,7 @@ type pageable struct {
 	PrevPage  *Hyperlink
 }
 
+// Result wraps the original response for the server and the possible error.
 type Result struct {
 	Response *Response
 	Err      error

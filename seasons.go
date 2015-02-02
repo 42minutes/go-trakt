@@ -16,6 +16,8 @@ type SeasonsService struct {
 	client *Client
 }
 
+// All returns all the seasons of a particular Show. The seasons do not include
+// the episodes.
 func (r *SeasonsService) All(showTraktID int) (seasons []Season, result *Result) {
 	url, _ := ShowSeasonsURL.Expand(M{"showTraktID": fmt.Sprintf("%d", showTraktID)})
 	result = r.client.get(url, &seasons)

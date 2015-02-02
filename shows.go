@@ -18,6 +18,8 @@ type ShowsService struct {
 	client *Client
 }
 
+// One returns a single show identified by a Trakt ID. It also returns a Result
+// object to inspect the returned response of the server.
 func (r *ShowsService) One(traktID int) (show *Show, result *Result) {
 	url, _ := ShowURL.Expand(M{"traktID": fmt.Sprintf("%d", traktID)})
 	result = r.client.get(url, &show)
