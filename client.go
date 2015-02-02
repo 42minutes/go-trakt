@@ -1,7 +1,6 @@
 package trakt
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -115,7 +114,6 @@ func (c *Client) applyRequestHeaders(req *Request) {
 
 	if tokenAuth, ok := c.AuthMethod.(TokenAuth); ok {
 		req.Header.Set("Authorization", tokenAuth.String())
-		fmt.Println(tokenAuth.AccessToken)
 	}
 
 	// Go doesn't apply `Host` on the header, instead it consults `Request.Host`
