@@ -3,7 +3,7 @@ package trakt
 import "fmt"
 
 var (
-	ShowSeasonEpisodesURL = Hyperlink("shows/{showTraktId}/seasons/{seasonNumber}/episodes")
+	ShowSeasonEpisodesURL = Hyperlink("shows/{showTraktID}/seasons/{seasonNumber}/episodes")
 )
 
 // Create a ShowsService with the base url.URL
@@ -16,8 +16,8 @@ type EpisodesService struct {
 	client *Client
 }
 
-func (r *EpisodesService) AllBySeason(showTraktId int, seasonNumber int) (episodes []Episode, result *Result) {
-	url, _ := ShowSeasonEpisodesURL.Expand(M{"showTraktId": fmt.Sprintf("%d", showTraktId), "seasonNumber": fmt.Sprintf("%d", seasonNumber)})
+func (r *EpisodesService) AllBySeason(showTraktID int, seasonNumber int) (episodes []Episode, result *Result) {
+	url, _ := ShowSeasonEpisodesURL.Expand(M{"showTraktID": fmt.Sprintf("%d", showTraktID), "seasonNumber": fmt.Sprintf("%d", seasonNumber)})
 	result = r.client.get(url, &episodes)
 	return
 }
@@ -26,7 +26,7 @@ func (r *EpisodesService) AllBySeason(showTraktId int, seasonNumber int) (episod
 type Episode struct {
 	AvailableTranslations []string `json:"available_translations"`
 	FirstAired            string   `json:"first_aired"`
-	Ids                   struct {
+	IDs                   struct {
 		Imdb   string `json:"imdb"`
 		Tmdb   int    `json:"tmdb"`
 		Trakt  int    `json:"trakt"`

@@ -3,7 +3,7 @@ package trakt
 import "fmt"
 
 var (
-	ShowURL         = Hyperlink("shows/{traktId}")
+	ShowURL         = Hyperlink("shows/{traktID}")
 	ShowsPopularURL = Hyperlink("shows/popular")
 	ShowsSearchURL  = Hyperlink("search?query={query}&type=show")
 )
@@ -18,8 +18,8 @@ type ShowsService struct {
 	client *Client
 }
 
-func (r *ShowsService) One(traktId int) (show *Show, result *Result) {
-	url, _ := ShowURL.Expand(M{"traktId": fmt.Sprintf("%d", traktId)})
+func (r *ShowsService) One(traktID int) (show *Show, result *Result) {
+	url, _ := ShowURL.Expand(M{"traktID": fmt.Sprintf("%d", traktID)})
 	result = r.client.get(url, &show)
 	return
 }
@@ -50,7 +50,7 @@ type Show struct {
 	FirstAired            string   `json:"first_aired"`
 	Genres                []string `json:"genres"`
 	Homepage              string   `json:"homepage"`
-	Ids                   struct {
+	IDs                   struct {
 		Imdb   string `json:"imdb"`
 		Slug   string `json:"slug"`
 		Tmdb   int    `json:"tmdb"`
@@ -98,7 +98,7 @@ type Show struct {
 type ShowResult struct {
 	Score float64 `json:"score"`
 	Show  struct {
-		Ids struct {
+		IDs struct {
 			Imdb   string `json:"imdb"`
 			Slug   string `json:"slug"`
 			Tmdb   int    `json:"tmdb"`

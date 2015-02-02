@@ -14,7 +14,7 @@ const (
 
 // Movie struct for the Trakt v2 API
 type Movie struct {
-	Ids struct {
+	IDs struct {
 		Imdb  int `json:"imdb"`
 		Slug  int `json:"slug"`
 		Tmdb  int `json:"tmdb"`
@@ -26,7 +26,7 @@ type Movie struct {
 
 // Person struct for the Trakt v2 API
 type Person struct {
-	Ids struct {
+	IDs struct {
 		Imdb   int `json:"imdb"`
 		Slug   int `json:"slug"`
 		Tmdb   int `json:"tmdb"`
