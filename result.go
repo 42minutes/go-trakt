@@ -7,6 +7,7 @@ type pageable struct {
 	PrevPage  *Hyperlink
 }
 
+// Result wraps the original response for the server and the possible error.
 type Result struct {
 	Response *Response
 	Err      error
@@ -27,31 +28,6 @@ func (r *Result) Error() string {
 
 func newResult(resp *Response, err error) *Result {
 	pageable := pageable{}
-	// if resp != nil {
-	// 	fillPageable(&pageable, resp.MediaHeader)
-	// }
 
 	return &Result{Response: resp, pageable: pageable, Err: err}
 }
-
-// func fillPageable(pageable *pageable, header *mediaheader.MediaHeader) {
-// 	if link, ok := header.Relations["next"]; ok {
-// 		l := Hyperlink(link)
-// 		pageable.NextPage = &l
-// 	}
-//
-// 	if link, ok := header.Relations["prev"]; ok {
-// 		l := Hyperlink(link)
-// 		pageable.PrevPage = &l
-// 	}
-//
-// 	if link, ok := header.Relations["first"]; ok {
-// 		l := Hyperlink(link)
-// 		pageable.FirstPage = &l
-// 	}
-//
-// 	if link, ok := header.Relations["last"]; ok {
-// 		l := Hyperlink(link)
-// 		pageable.LastPage = &l
-// 	}
-// }
