@@ -53,7 +53,7 @@ func (r *Request) Options(output interface{}) (*Response, error) {
 }
 
 func (r *Request) setBody(input interface{}) {
-	mtype, _ := mediatype.Parse(defaultMediaType)
+	mtype, _ := mediatype.Parse(DefaultMediaType)
 	r.Request.SetBody(mtype, input)
 }
 

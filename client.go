@@ -11,12 +11,12 @@ import (
 )
 
 func NewClient(apiKey string, authMethod AuthMethod) *Client {
-	return NewClientWith(traktAPIURL, userAgent, apiKey, authMethod, nil)
+	return NewClientWith(TraktAPIURL, UserAgent, apiKey, authMethod, nil)
 }
 
-func NewClientWith(baseURL string, userAgent string, apiKey string, authMethod AuthMethod, httpClient *http.Client) *Client {
+func NewClientWith(baseURL string, UserAgent string, apiKey string, authMethod AuthMethod, httpClient *http.Client) *Client {
 	client, _ := sawyer.NewFromString(baseURL, httpClient)
-	return &Client{Client: client, UserAgent: userAgent, ApiKey: apiKey, AuthMethod: authMethod}
+	return &Client{Client: client, UserAgent: UserAgent, ApiKey: apiKey, AuthMethod: authMethod}
 }
 
 type Client struct {
@@ -107,9 +107,9 @@ func (c *Client) upload(uploadUrl *url.URL, asset io.ReadCloser, contentType str
 }
 
 func (c *Client) applyRequestHeaders(req *Request) {
-	req.Header.Set("Accept", defaultMediaType)
+	req.Header.Set("Accept", DefaultMediaType)
 	req.Header.Set("User-Agent", c.UserAgent)
-	req.Header.Set("trakt-api-version", traktAPIVersion)
+	req.Header.Set("trakt-api-version", TraktAPIVersion)
 	req.Header.Set("trakt-api-key", c.ApiKey)
 
 	if tokenAuth, ok := c.AuthMethod.(TokenAuth); ok {
