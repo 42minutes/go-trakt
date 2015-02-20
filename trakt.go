@@ -1,9 +1,9 @@
 package trakt
 
 const (
-	traktAPIURL      = "https://api.trakt.tv"
-	traktAPIVersion  = "2"
-	userAgent        = "Trakt Go " + version
-	version          = "0.0.1"
-	defaultMediaType = "application/json"
+	TraktAPIURL      = "https://api.trakt.tv"
+	TraktAPIVersion  = "2"
+	UserAgent        = "Trakt Go " + Version
+	Version          = "0.0.1"
+	DefaultMediaType = "application/json"
 )
