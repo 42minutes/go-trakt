@@ -6,6 +6,7 @@ var (
 	ShowURL         = Hyperlink("shows/{traktID}")
 	ShowsPopularURL = Hyperlink("shows/popular")
 	ShowsSearchURL  = Hyperlink("search?query={query}&type=show")
+	ShowsByIDURL    = Hyperlink("search?id_type={id_type}&id={id}&type=show")
 )
 
 // Create a ShowsService with the base url.URL
@@ -24,6 +25,16 @@ func (r *ShowsService) One(traktID int) (show *Show, result *Result) {
 	url, _ := ShowURL.Expand(M{"traktID": fmt.Sprintf("%d", traktID)})
 	result = r.client.get(url, &show)
 	return
+}
+
+func (r *ShowsService) OneOfType(id string, idType string) (show *Show, result *Result) {
+	shows := []ShowResult{}
+	url, _ := ShowsByIDURL.Expand(M{"id_type": idType, "id": id})
+	result = r.client.get(url, &shows)
+	if len(shows) > 0 {
+		return shows[0].Show, result
+	}
+	return nil, result
 }
 
 func (r *ShowsService) AllPopular() (shows []Show, result *Result) {
@@ -99,30 +110,6 @@ type Show struct {
 
 type ShowResult struct {
 	Score float64 `json:"score"`
-	Show  struct {
-		IDs struct {
-			Imdb   string `json:"imdb"`
-			Slug   string `json:"slug"`
-			Tmdb   int    `json:"tmdb"`
-			Trakt  int    `json:"trakt"`
-			Tvdb   int    `json:"tvdb"`
-			Tvrage int    `json:"tvrage"`
-		} `json:"ids"`
-		Images struct {
-			Fanart struct {
-				Full   string `json:"full"`
-				Medium string `json:"medium"`
-				Thumb  string `json:"thumb"`
-			} `json:"fanart"`
-			Poster struct {
-				Full   string `json:"full"`
-				Medium string `json:"medium"`
-				Thumb  string `json:"thumb"`
-			} `json:"poster"`
-		} `json:"images"`
-		Overview string `json:"overview"`
-		Title    string `json:"title"`
-		Year     int    `json:"year"`
-	} `json:"show"`
-	Type string `json:"type"`
+	Show  *Show   `json:"show"`
+	Type  string  `json:"type"`
 }
