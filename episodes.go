@@ -6,7 +6,8 @@ import (
 )
 
 var (
-	ShowSeasonEpisodesURL = Hyperlink("shows/{showTraktID}/seasons/{seasonNumber}/episodes")
+	ShowSeasonEpisodesURL      = Hyperlink("shows/{showTraktID}/seasons/{seasonNumber}/episodes")
+	ShowSeasonEpisodeNumberURL = Hyperlink("shows/{showTraktID}/seasons/{seasonNumber}/episodes/{episodeNumber}")
 )
 
 // Create a ShowsService with the base url.URL
@@ -21,8 +22,23 @@ type EpisodesService struct {
 
 // AllBySeason returns all the episodes of a particular Season number.
 func (r *EpisodesService) AllBySeason(showTraktID int, seasonNumber int) (episodes []Episode, result *Result) {
-	url, _ := ShowSeasonEpisodesURL.Expand(M{"showTraktID": fmt.Sprintf("%d", showTraktID), "seasonNumber": fmt.Sprintf("%d", seasonNumber)})
+	url, _ := ShowSeasonEpisodesURL.Expand(M{
+		"showTraktID":  fmt.Sprintf("%d", showTraktID),
+		"seasonNumber": fmt.Sprintf("%d", seasonNumber),
+	})
 	result = r.client.get(url, &episodes)
+	return
+}
+
+// OneBySeasonByNumber returns one episode of a specific season of a show.
+func (r *EpisodesService) OneBySeasonByNumber(showTraktID int, seasonNumber int, episodeNumber int) (episode Episode, result *Result) {
+	url, _ := ShowSeasonEpisodesURL.Expand(M{
+		"showTraktID":   fmt.Sprintf("%d", showTraktID),
+		"seasonNumber":  fmt.Sprintf("%d", seasonNumber),
+		"episodeNumber": fmt.Sprintf("%d", episodeNumber),
+	})
+
+	result = r.client.get(url, &episode)
 	return
 }
 
