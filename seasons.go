@@ -3,7 +3,8 @@ package trakt
 import "fmt"
 
 var (
-	ShowSeasonsURL = Hyperlink("shows/{showTraktID}/seasons")
+	ShowSeasonsURL       = Hyperlink("shows/{showTraktID}/seasons")
+	ShowSeasonsNumberURL = Hyperlink("shows/{showTraktID}/seasons/{seasonNumber}")
 )
 
 // Create a ShowsService with the base url.URL
@@ -21,6 +22,13 @@ type SeasonsService struct {
 func (r *SeasonsService) All(showTraktID int) (seasons []Season, result *Result) {
 	url, _ := ShowSeasonsURL.Expand(M{"showTraktID": fmt.Sprintf("%d", showTraktID)})
 	result = r.client.get(url, &seasons)
+	return
+}
+
+// ByNumber returns a specific season of a particular Show.
+func (r *SeasonsService) ByNumber(showTraktID int, seasonNumber int) (season Season, result *Result) {
+	url, _ := ShowSeasonsNumberURL.Expand(M{"showTraktID": fmt.Sprintf("%d", showTraktID), "seasonNumber": fmt.Sprintf("%d", seasonNumber)})
+	result = r.client.get(url, &season)
 	return
 }
 
