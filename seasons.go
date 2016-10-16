@@ -26,8 +26,11 @@ func (r *SeasonsService) All(showTraktID int) (seasons []Season, result *Result)
 }
 
 // ByNumber returns a specific season of a particular Show.
-func (r *SeasonsService) ByNumber(showTraktID int, seasonNumber int) (season Season, result *Result) {
-	url, _ := ShowSeasonsNumberURL.Expand(M{"showTraktID": fmt.Sprintf("%d", showTraktID), "seasonNumber": fmt.Sprintf("%d", seasonNumber)})
+func (r *SeasonsService) ByNumber(showTraktID int, seasonNumber int) (season []Season, result *Result) {
+	url, _ := ShowSeasonsNumberURL.Expand(M{
+		"showTraktID":  fmt.Sprintf("%d", showTraktID),
+		"seasonNumber": fmt.Sprintf("%d", seasonNumber),
+	})
 	result = r.client.get(url, &season)
 	return
 }
