@@ -31,13 +31,12 @@ func (r *EpisodesService) AllBySeason(showTraktID int, seasonNumber int) (episod
 }
 
 // OneBySeasonByNumber returns one episode of a specific season of a show.
-func (r *EpisodesService) OneBySeasonByNumber(showTraktID int, seasonNumber int, episodeNumber int) (episode []Episode, result *Result) {
-	url, _ := ShowSeasonEpisodesURL.Expand(M{
+func (r *EpisodesService) OneBySeasonByNumber(showTraktID int, seasonNumber int, episodeNumber int) (episode Episode, result *Result) {
+	url, _ := ShowSeasonEpisodeNumberURL.Expand(M{
 		"showTraktID":   fmt.Sprintf("%d", showTraktID),
 		"seasonNumber":  fmt.Sprintf("%d", seasonNumber),
 		"episodeNumber": fmt.Sprintf("%d", episodeNumber),
 	})
-
 	result = r.client.get(url, &episode)
 	return
 }
